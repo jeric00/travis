@@ -1,11 +1,17 @@
 language: elixir
 elixir:
-  - 1.2
+- 1.2
 otp_release:
-  - 18.2
+- 18.2
 sudo: false
 addons:
-  postgresql: '9.4' # Use postgres 9.4
+  postgresql: '9.4'
 before_script:
-# Create the test database
 - psql -c 'create database peepchat_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: KFcjsszI07o3hgy0hI/UXwpLJqx0qrYhIZywnPuNzC8rR1SC0hFlB7+huhqUWO9dXKbUz8fZ+mOqpY6jPrRYeop2kIXkuTWVocKJwA6Hp8J9r8BqhpwBmwSqppgBVgJbQTRwes/wnoSE+XhuoxaqG96pwsbOxX9+2kcG3A+78/7dpUwvQLG9H4pAEsqVnWdHXB3fWwEMy5DOnH0MVp1oidsRx/xugwOmpXlY38v96u4/03r9Y37lw4tLDkhTuGHWhvfS9t4fSQEgM8YqwSLVfJ5cTYpBJirbdArubdTyLKac2SicPTSJRZreXjr95XLrRVPlvHjdPP3bRv80TYmsR4Jo/MnZ7Hi634bgogOeYu4n00UYI09jS3YsalNpxqqTYfvkLh+77LFV1hmelNEF5VfYW4luBNy+dE+NGkxkonMywIPMEi6mhJY2Lv9jDznQV2uHLhS028EO78UL5ntnqB/z/zrPZJrUnP39lIkCx2mnRK3wGy5ZKvDLMukqZH07tYmW0r4rHBB52N/PiHoCfo1G+2j8cXpZs6Z0bedMOEhqUImhQOuvXfeCTw03B+X74fYWLZCdiyO3cytuC78T60ARFHPgqCTqtp1ZVa3YkOkT4B0K2KqE5qfWXvRjnbAcpedJ5Ts5M7Ojsd3WjvgT97MXif9aNeZQ3CNLQTybP1s=
+  app: travis
+  on:
+    repo: jeric00/travis
