@@ -11,7 +11,7 @@ defmodule Peepchat.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
-    render(conn, "show.json-api", data: user)
+    render(conn, "show.json", data: user)
   end
 
   def current(conn, _) do
@@ -19,6 +19,6 @@ defmodule Peepchat.UserController do
     |> Guardian.Plug.current_resource
 
     conn
-    |> render(Peepchat.UserView, "show.json-api", data: user)
+    |> render(Peepchat.UserView, "show.json", data: user)
   end
 end

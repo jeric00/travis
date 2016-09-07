@@ -7,18 +7,17 @@ defmodule Peepchat.RoomController do
   plug Guardian.Plug.EnsureAuthenticated, handler: Peepchat.AuthErrorHandler
 
   def index(conn, %{"user_id" => user_id}) do
-  rooms = Room
-  |> where(owner_id: ^user_id)
-  |> Repo.all
-  
-  render(conn, "index.json-api", data: rooms)
-end
+    rooms = Room
+    |> where(owner_id: ^user_id)
+    |> Repo.all
+    
+    render(conn, "index.json", data: rooms)
+  end
 
-# Full list of rooms
-def index(conn, _params) do
-  rooms = Repo.all(Room)
-  render(conn, "index.json-api", data: rooms)
-end
+  def index(conn, _params) do
+    rooms = Repo.all(Room)
+    render(conn, "index.json", data: rooms)
+  end
 
   def create(conn, %{"data" => %{"type" => "rooms", "attributes" => room_params, "relationships" => _}}) do
     # Get the current user
@@ -31,7 +30,7 @@ end
         conn
         |> put_status(:created)
         |> put_resp_header("location", room_path(conn, :show, room))
-        |> render("show.json-api", data: room)
+        |> render("show.json", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -41,7 +40,7 @@ end
 
   def show(conn, %{"id" => id}) do
     room = Repo.get!(Room, id)
-    render(conn, "show.json-api", data: room)
+    render(conn, "show.json", data: room)
   end
 
   def update(conn, %{"id" => id, "data" => %{"id" => _, "type" => "rooms", "attributes" => room_params}}) do
@@ -55,7 +54,7 @@ end
 
     case Repo.update(changeset) do
       {:ok, room} ->
-        render(conn, "show.json-api", data: room)
+        render(conn, "show.json", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

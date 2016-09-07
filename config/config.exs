@@ -13,7 +13,7 @@ config :peepchat,
 config :peepchat, Peepchat.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "/Ffc7VKDl9WvDb/hovInHJDDikvpmp6DXvamsB2KNX7ngdkWFuCqJ18VfDltpVBQ",
-  render_errors: [view: Peepchat.ErrorView, accepts: ~w(json)],
+  render_errors: [view: Peepchat.ErrorView, accepts: ~w(  json)],
   pubsub: [name: Peepchat.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -27,7 +27,7 @@ config :logger, :console,
 
 config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
-}
+} 
 
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional

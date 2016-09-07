@@ -1,4 +1,3 @@
-
 defmodule Peepchat.RegistrationControllerTest do
   use Peepchat.ConnCase
 
