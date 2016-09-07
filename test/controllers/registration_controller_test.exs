@@ -17,7 +17,7 @@ defmodule Peepchat.RegistrationControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, registration_path(conn, :create), %{data: %{type: "user",
+    conn = post conn, registration_path(conn, :create), %{data: %{type: "users",
       attributes: @valid_attrs
       }}
     assert json_response(conn, 201)["data"]["id"]
